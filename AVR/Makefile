@@ -1,0 +1,3 @@
+all:
+	$(MAKE) -C AT90USBKEY-1.23
+	$(MAKE) -C AT90USBKEY-1.24
