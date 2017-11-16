@@ -1,0 +1,16 @@
+*.as
+*.cab
+*.cmf
+*.cof
+*.d
+*.dfu
+*.hex
+*.hxl
+*.lst
+*.obj
+*.p1
+*.pre
+*.rlf
+*.sdb
+*.sym
+m-stack/
