@@ -133,23 +133,6 @@ int main(void)
 	}
 }
 
-#if (ARCH == ARCH_XMEGA)
-static uint8_t Joystick_GetStatus(void)
-{
-	return 0;
-}
-
-static void Joystick_Init(void)
-{
-}
-
-#define JOY_UP 1
-#define JOY_LEFT 2
-#define JOY_RIGHT 3
-#define JOY_DOWN 4
-#define JOY_PRESS 5
-#endif
-
 /** Configures the board hardware and chip peripherals for the demo's functionality. */
 void SetupHardware(void)
 {
