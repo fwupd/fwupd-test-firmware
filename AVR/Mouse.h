@@ -50,7 +50,11 @@
 
 		#include <LUFA/Drivers/Board/LEDs.h>
 		#include <LUFA/Drivers/Board/Buttons.h>
+#if (BOARD == BOARD_USBKEY)
 		#include <LUFA/Drivers/Board/Joystick.h>
+#else
+		#include <FakeJoystick.h>
+#endif
 		#include <LUFA/Drivers/USB/USB.h>
 		#include <LUFA/Platform/Platform.h>
 

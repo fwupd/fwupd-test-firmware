@@ -86,7 +86,9 @@ USB_ClassInfo_HID_Device_t DFU_Interface =
 
 /** Pointer to the start of the bootloader.
  */
+#if (BOARD == BOARD_USBKEY)
 static AppPtr_t BootloaderPtr = (AppPtr_t)0x1e000;
+#endif
 
 /** Resets all configured hardware required for the bootloader back to their original states. */
 static void ResetHardware(void)
@@ -95,6 +97,7 @@ static void ResetHardware(void)
 	USB_Disable();
 	LEDs_Disable();
 
+#if (ARCH == ARCH_AVR8)
 	/* Disable Bootloader active LED toggle timer */
 	TIMSK1 = 0;
 	TCCR1B = 0;
@@ -102,6 +105,7 @@ static void ResetHardware(void)
 	/* Relocate the interrupt vector table back to the application section */
 	MCUCR = (1 << IVCE);
 	MCUCR = 0;
+#endif
 }
 
 static void
@@ -110,8 +114,15 @@ RebootToBootloader(void)
 	/* Reset configured hardware back to their original states for the user application */
 	ResetHardware();
 
+#if (ARCH == ARCH_AVR8)
 	/* Start the user application */
 	BootloaderPtr();
+#elif (ARCH == ARCH_XMEGA)
+	/* Force a watchdog timeout */
+	GlobalInterruptDisable();
+	wdt_enable(WDTO_500MS);
+	while(1) {};
+#endif
 }
 
 /** Main program entry point. This routine contains the overall program flow, including initial

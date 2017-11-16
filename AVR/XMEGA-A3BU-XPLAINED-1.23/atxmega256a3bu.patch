@@ -1,0 +1,26 @@
+diff -urNp common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu.old/common/services/isp/flip/xmega/cstartup.s90 common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu/common/services/isp/flip/xmega/cstartup.s90
+--- common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu.old/common/services/isp/flip/xmega/cstartup.s90	2012-07-26 16:38:30.000000000 +0100
++++ common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu/common/services/isp/flip/xmega/cstartup.s90	2017-11-20 17:02:26.000000000 +0000
+@@ -140,6 +140,10 @@ boot_process:
+ 	SBRC  R16,RST_SRF_bp         // Test Software Reset Flag
+ 	RJMP  start_app
+ 	
++	// Test Watchdog reset
++	SBRC  R16,RST_WDRF_bp
++	RJMP  start_boot
++
+ 	// Test ISP pin
+ 	STS   ISP_PORT_DIR, R15
+ 	LDI   R16,0x18
+diff -urNp common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu.old/common/services/usb/class/dfu_flip/device/bootloader/xmega/conf/conf_usb.h common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu/common/services/usb/class/dfu_flip/device/bootloader/xmega/conf/conf_usb.h
+--- common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu.old/common/services/usb/class/dfu_flip/device/bootloader/xmega/conf/conf_usb.h	2012-07-26 16:38:30.000000000 +0100
++++ common.services.usb.class.dfu_atmel.device.bootloader.atxmega256a3bu/common/services/usb/class/dfu_flip/device/bootloader/xmega/conf/conf_usb.h	2017-11-23 14:23:20.000000000 +0000
+@@ -111,7 +111,7 @@
+ #define  USB_DEVICE_PRODUCT_NAME          "DFU ATXMEGA256A3U"
+ #elif AVR8_PART_IS_DEFINED(ATxmega256A3BU)
+ #define  USB_DEVICE_PRODUCT_ID            USB_PID_ATMEL_DFU_ATXMEGA256A3BU
+-#define  USB_DEVICE_PRODUCT_NAME          "DFU ATXMEGA256A3BU"
++#define  USB_DEVICE_PRODUCT_NAME          "DFU ATXMEGA256A3BU (custom)"
+ #elif AVR8_PART_IS_DEFINED(ATxmega128A1U)
+ #define  USB_DEVICE_PRODUCT_ID            USB_PID_ATMEL_DFU_ATXMEGA128A1U
+ #define  USB_DEVICE_PRODUCT_NAME          "DFU ATXMEGA128A1U"

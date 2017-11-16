@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Richard Hughes <richard@hughsie.com> -->
+<component type="firmware">
+  <id>com.acme.a3bu-xplained.firmware</id>
+  <name>A3BU XPLAINED Firmware</name>
+  <summary>Firmware for the ACME A3BU XPLAINED</summary>
+  <description>
+    <p>
+      Updating the firmware on your A3BU XPLAINED improves performance and
+      adds new features.
+    </p>
+  </description>
+  <provides>
+    <!-- USB\VID_273F&PID_2001 -->
+    <firmware type="flashed">80478b9a-3643-5e47-ab0f-ed28abe1019d</firmware>
+  </provides>
+  <url type="homepage">http://www.acme.com/</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <developer_name>ACME Corp</developer_name>
+  <releases>
+    <release version="1.23" date="2017-06-15" urgency="medium">
+      <checksum filename="a3bu-xplained.hex" target="content"/>
+      <description>
+        <p>Fixes a bug with the flux capacitor to avoid year 2038 overflow.</p>
+      </description>
+    </release>
+  </releases>
+</component>
