@@ -4,8 +4,10 @@ BOARD        = USBKEY
 F_CPU        = 8000000
 F_USB        = $(F_CPU)
 OPTIMIZATION = s
-TARGET       = Mouse
-SRC          = ../$(TARGET).c ../Descriptors.c $(LUFA_SRC_USB) $(LUFA_SRC_USBCLASS)
+TARGET       = at90usbkey
+METAINFO     = at90usbkey.metainfo.xml
+CABVERSION   = 124
+SRC          = ../Mouse.c ../Descriptors.c $(LUFA_SRC_USB) $(LUFA_SRC_USBCLASS)
 LUFA_PATH    = ../../../lufa/LUFA
 CC_FLAGS     = -DUSE_LUFA_CONFIG_HEADER -I../Config \
                -DUSB_VID=0x273f -DUSB_PID=0x2000 \
@@ -14,8 +16,13 @@ CC_FLAGS     = -DUSE_LUFA_CONFIG_HEADER -I../Config \
                -DVERSION_MAJOR=1 -DVERSION_MINOR=2 -DVERSION_MICRO=4
 LD_FLAGS     =
 
-# Default target
-all:
+all: at90usbkey$(CABVERSION).cab
+
+clean:
+	rm *.cab
+
+%.cab: $(TARGET).hex $(METAINFO)
+	gcab --create --nopath $@ $(TARGET).hex $(METAINFO)
 
 # Include LUFA-specific DMBS extension modules
 DMBS_LUFA_PATH ?= $(LUFA_PATH)/Build/LUFA

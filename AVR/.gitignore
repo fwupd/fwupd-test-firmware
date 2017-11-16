@@ -1,4 +1,5 @@
 *.bin
+*.cab
 *.eep
 *.elf
 *.hex
