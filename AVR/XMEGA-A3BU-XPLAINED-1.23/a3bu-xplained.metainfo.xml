@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Richard Hughes <richard@hughsie.com> -->
 <component type="firmware">
-  <id>com.acme.a3bu-xplained.firmware</id>
+  <id>org.fwupd.a3bu-xplained.firmware</id>
   <name>A3BU XPLAINED Firmware</name>
   <summary>Firmware for the ACME A3BU XPLAINED</summary>
   <description>
